@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import the useNavigation hook
 import TaskCount from '../TaskCount';
 import DownArrow from '../../assets/icons/DownArrow';
 import RightArrow from '../../assets/icons/RightArrow';
@@ -7,6 +8,14 @@ import TitleCount from '../TitleCount';
 import CustomButton from '../CustomButton';
 
 const TaskDetails = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handleTaskPress = (task) => {
+    if (task.title === 'Wireframes') {
+      navigation.navigate('WireframeScreen'); // Navigate to the WireframeScreen
+    }
+  };
+
   return (
     <View style={styles.taskCard}>
       <View style={styles.headerRow}>
@@ -39,7 +48,7 @@ const TaskDetails = () => {
           statusStyle: styles.statusCompleted,
         },
       ].map((task, index) => (
-        <View key={index} style={styles.taskRow}>
+        <TouchableOpacity key={index} onPress={() => handleTaskPress(task)} style={styles.taskRow}>
           <View style={styles.taskInfo}>
             <Text style={styles.taskTitle}>{task.title}</Text>
             <Text style={styles.taskId}>
@@ -50,7 +59,7 @@ const TaskDetails = () => {
             <Text style={task.statusStyle}>{task.status}</Text>
             <RightArrow style={styles.rightArrow} />
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+
 const { width } = Dimensions.get('window');
 const imageSize = width * 0.12;
 
-const MemberList = ({ members }) => {
+const MemberList = ({ members, title }) => { 
   const [showMore, setShowMore] = useState(false);
 
   const visibleMembers = showMore ? members : members.slice(0, 2);
@@ -12,7 +13,7 @@ const MemberList = ({ members }) => {
   return (
     <View style={styles.section}>
       <View style={styles.headerContainer}>
-        <Text style={styles.sectionTitle}>Members</Text>
+        <Text style={styles.sectionTitle}>{title}</Text> 
         <View style={styles.imageContainer}>
           {visibleMembers.map((item, index) => (
             <Image
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     margin: 16,
-    marginBottom:-2,
+    marginBottom: -2,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -64,12 +65,12 @@ const styles = StyleSheet.create({
   imageContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 'auto', 
+    marginLeft: 'auto',
   },
   memberImage: {
     width: imageSize,
     height: imageSize,
-    borderRadius: imageSize / 2, 
+    borderRadius: imageSize / 2,
     borderWidth: 2,
     borderColor: '#fff',
   },
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   extraText: {
     color: '#02111A',
     fontWeight: 'bold',
-    fontSize:14,
+    fontSize: 14,
   },
 });
 

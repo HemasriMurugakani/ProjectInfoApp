@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import ProjectInfoCard from '../components/Home/ProjectInfoCard';
 import TitleCount from '../components/TitleCount';
 import RightArrow from '../assets/icons/RightArrow';
+import ParentComponent from '../components/MembModal';
 
 const MetanusUIDesign = ({ navigation}) => {
   const documentCount = 26; 
@@ -83,7 +84,7 @@ const MetanusUIDesign = ({ navigation}) => {
       <Header title="Metanus UI Design" />
       <ProjectInfoCard />
       <TaskDetails />
-      <MemberList members={members} />
+      <MemberList members={members} title="Members" />
       <AssetList assets={assets} />
       
       <View style={styles.documentSection}> 

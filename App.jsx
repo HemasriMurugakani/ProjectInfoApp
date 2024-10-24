@@ -3,8 +3,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';  // First screen (task overview)
-import WireframeDetailsScreen from './src/screens/WireframeDetailsScreen';  // Second screen (details)
+import WireframeDetailsScreen from './src/screens/WireframeScreen';  // Second screen (details)
 import FilesScreen from './src/screens/FilesScreen';
+import Wireframe from './src/screens/WireframeScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,11 @@ export default function App() {
         <Stack.Screen 
           name="FilesScreen" 
           component={FilesScreen} 
+          options={{ headerShown: false }}
+        />
+                <Stack.Screen 
+          name="WireframeScreen" 
+          component={Wireframe} 
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
