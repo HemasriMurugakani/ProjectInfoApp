@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
+    marginTop:30,
+    marginLeft:15,
+    marginBottom:10,
   },
   backButton: {
     width: 32,

@@ -31,26 +31,28 @@ const ProjectInfoCard = () => {
         <View style={styles.statusColumn}>
           <Text style={styles.label}>Status</Text>
           <View style={styles.progressContainer}>
-            {Platform.OS === 'android' ? (
-              <ProgressBarAndroid
-                styleAttr="Horizontal"
-                indeterminate={false}
-                progress={0.78}
-                color="#008545"
-                style={styles.progressBar}
-              />
-            ) : (
-              <ProgressViewIOS
-                progress={0.78}
-                progressTintColor="#4caf50"
-                style={styles.progressBar}
-              />
-            )}
+            {/* <View style={styles.progressBackground}> */}
+              {Platform.OS === 'android' ? (
+                <ProgressBarAndroid
+                  styleAttr="Horizontal"
+                  indeterminate={false}
+                  progress={0.78}
+                  color="#008545"
+                  style={styles.progressBar}
+                />
+              ) : (
+                <ProgressViewIOS
+                  progress={0.78}
+                  progressTintColor="#008545"
+                  style={styles.progressBar}
+                />
+              )}
+            </View>
             <Text style={styles.percentage}>78%</Text>
           </View>
         </View>
       </View>
-    </View>
+    // </View>
   );
 };
 
@@ -63,8 +65,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
-    elevation: 3,
+    borderWidth:1,
+    borderColor:"#fff",
     margin: 16,
+    marginBottom:-2,
   },
   title: {
     fontSize: 18,
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     lineHeight: 20, 
   },
   seeMore: {
-    color: '#f2994a', // Orange color for "See more"
+    color: '#f2994a', 
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -111,9 +115,8 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     flex: 1,
-    height: 12, // Slightly increase the height for a thicker bar
-    borderRadius: 6, // Rounded corners: half the height for circle-like ends
-    backgroundColor: '#CBF2E0', // Track background color
+    height: 15,  
+    borderRadius: 10,  
   },
   percentage: {
     fontSize: 14,

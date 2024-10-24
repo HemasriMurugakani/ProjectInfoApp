@@ -1,6 +1,5 @@
-import * as React from "react"
 import Svg, { Circle, Path } from "react-native-svg"
-const BackArrow = (props) => (
+const Backarrow = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
@@ -18,4 +17,4 @@ const BackArrow = (props) => (
     />
   </Svg>
 )
-export default BackArrow
+export default Backarrow

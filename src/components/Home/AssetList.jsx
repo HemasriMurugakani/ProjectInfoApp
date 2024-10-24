@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
+const { width } = Dimensions.get('window');
+const imageSize = width * 0.25; 
 
 const AssetList = ({ assets }) => {
   return (
@@ -7,6 +9,7 @@ const AssetList = ({ assets }) => {
       <Text style={styles.sectionTitle}>Assets</Text>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={assets}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
@@ -23,24 +26,35 @@ const AssetList = ({ assets }) => {
 const styles = StyleSheet.create({
   section: {
     backgroundColor: '#fff',
-    marginTop: 10,
     padding: 10,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 8,
+    borderWidth: 1,
+    borderColor: '#fff',
+    margin: 16,
+    marginBottom:-2,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#02111A',
   },
   assetContainer: {
     alignItems: 'center',
     marginRight: 20,
+    marginTop: 10, // Add space between the section title and images
   },
   assetImage: {
-    width: 50,
-    height: 50,
+    width: imageSize, // Responsive width based on screen size
+    height: imageSize, // Responsive height based on screen size
+    borderRadius: 12, // Rounded corners
   },
   assetName: {
     marginTop: 5,
-    fontSize: 12,
+    fontSize: 14,
   },
 });
 
