@@ -2,8 +2,9 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/screens/HomeScreen'  // First screen (task overview)
+import HomeScreen from './src/screens/HomeScreen';  // First screen (task overview)
 import WireframeDetailsScreen from './src/screens/WireframeDetailsScreen';  // Second screen (details)
+import FilesScreen from './src/screens/FilesScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,8 +18,9 @@ export default function App() {
           options={{ headerShown: false }}  // Hides the header text
         />
         <Stack.Screen 
-          name="WireframeDetails" 
-          component={WireframeDetailsScreen} 
+          name="FilesScreen" 
+          component={FilesScreen} 
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet,} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const TitleCount = ({ title, badgeCount, RightArrowIcon }) => {
+const TitleCount = ({ title, badgeCount, RightArrowIcon, navigation }) => {
   const formattedBadgeCount = badgeCount < 10 ? `0${badgeCount}` : badgeCount;
 
+  // Handle press to navigate
+  const handlePress = () => {
+    navigation.navigate('FilesScreen'); // Adjust this to your desired screen
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={handlePress} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.badgeContainer}>
         <View style={styles.badge}>
@@ -15,7 +20,7 @@ const TitleCount = ({ title, badgeCount, RightArrowIcon }) => {
       <View style={styles.arrowContainer}>
         {RightArrowIcon && <RightArrowIcon style={styles.rightArrow} />}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -54,11 +59,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   arrowContainer: {
-    marginLeft: 'auto', 
+    marginLeft: 'auto',
   },
   rightArrow: {
-    width: 24, 
-    height: 24, 
+    width: 24,
+    height: 24,
   },
 });
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, ProgressBarAndroid, ProgressViewIOS } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import ProgressBar from '../ProgressBar';
 
 const ProjectInfoCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,28 +32,11 @@ const ProjectInfoCard = () => {
         <View style={styles.statusColumn}>
           <Text style={styles.label}>Status</Text>
           <View style={styles.progressContainer}>
-            {/* <View style={styles.progressBackground}> */}
-              {Platform.OS === 'android' ? (
-                <ProgressBarAndroid
-                  styleAttr="Horizontal"
-                  indeterminate={false}
-                  progress={0.78}
-                  color="#008545"
-                  style={styles.progressBar}
-                />
-              ) : (
-                <ProgressViewIOS
-                  progress={0.78}
-                  progressTintColor="#008545"
-                  style={styles.progressBar}
-                />
-              )}
-            </View>
-            <Text style={styles.percentage}>78%</Text>
+            <ProgressBar progress={78} /> 
           </View>
         </View>
       </View>
-    // </View>
+    </View>
   );
 };
 
@@ -65,16 +49,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
-    borderWidth:1,
-    borderColor:"#fff",
+    borderWidth: 1,
+    borderColor: '#fff',
     margin: 16,
-    marginBottom:-2,
+    marginBottom: -2,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-    color:'#02111A',
+    color: '#02111A',
   },
   label: {
     fontSize: 14,
@@ -85,10 +69,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#4E585E',
     marginBottom: 8,
-    lineHeight: 20, 
+    lineHeight: 20,
   },
   seeMore: {
-    color: '#f2994a', 
+    color: '#f2994a',
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -112,16 +96,6 @@ const styles = StyleSheet.create({
   progressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  progressBar: {
-    flex: 1,
-    height: 15,  
-    borderRadius: 10,  
-  },
-  percentage: {
-    fontSize: 14,
-    color: '#333',
-    marginLeft: 8,
   },
 });
 

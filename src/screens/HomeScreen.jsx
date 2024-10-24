@@ -9,7 +9,8 @@ import ProjectInfoCard from '../components/Home/ProjectInfoCard';
 import TitleCount from '../components/TitleCount';
 import RightArrow from '../assets/icons/RightArrow';
 
-const App = () => {
+const MetanusUIDesign = ({ navigation}) => {
+  const documentCount = 26; 
   const members = [
     {
       id: '1',
@@ -84,11 +85,15 @@ const App = () => {
       <TaskDetails />
       <MemberList members={members} />
       <AssetList assets={assets} />
-      <TitleCount
-        title="Documents"
-        badgeCount={26}
-        RightArrowIcon={RightArrow}
-      />
+      
+      <View style={styles.documentSection}> 
+        <TitleCount
+          title="Documents"
+          badgeCount={documentCount} 
+          RightArrowIcon={RightArrow}
+          navigation={navigation} 
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -104,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default MetanusUIDesign;
