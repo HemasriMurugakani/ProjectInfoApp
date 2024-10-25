@@ -59,7 +59,7 @@ const Checklist = () => {
           text={item.text}
           checked={item.checked}
           onPress={() => toggleChecked(index)}
-          showSeparator={index < items.length - 1} // Show separator only between items
+          showSeparator={index < items.length - 1}
         />
       ))}
     </View>
@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
     marginBottom: 10,
     color: 'black',
+    fontFamily:'Poppins-SemiBold'
   },
   itemRow: {
     flexDirection: 'row',
@@ -95,6 +95,8 @@ const styles = StyleSheet.create({
   itemText: {
     marginLeft: 10,
     color: '#000',
+    fontSize: 13,
+    fontFamily:'Poppins-Medium',
   },
   separator: {
     height: 1,

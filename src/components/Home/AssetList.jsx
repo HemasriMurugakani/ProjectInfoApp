@@ -39,22 +39,24 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily:'Poppins-SemiBold',
     color: '#02111A',
+    marginLeft:7,
   },
   assetContainer: {
     alignItems: 'center',
     marginRight: 20,
-    marginTop: 10, // Add space between the section title and images
+    marginTop: 10, 
   },
   assetImage: {
-    width: imageSize, // Responsive width based on screen size
-    height: imageSize, // Responsive height based on screen size
-    borderRadius: 12, // Rounded corners
+    width: imageSize, 
+    height: imageSize, 
+    borderRadius: 12,
   },
   assetName: {
     marginTop: 5,
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily:'Poppins-Medium',
   },
 });
 

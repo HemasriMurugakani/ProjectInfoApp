@@ -42,7 +42,7 @@ const LogExpense = () => {
         <Text style={styles.expenseDate}>• 01/09/23 • 241 AED</Text>
       </View>
 
-      {/* Expense Bottom Sheet Modal */}
+
       <ExpenseBottomSheet 
         isVisible={isBottomSheetVisible} 
         onClose={toggleBottomSheet} 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily:'Poppins-SemiBold',
     marginBottom: 10,
     color: "black",
   },
@@ -78,12 +78,14 @@ const styles = StyleSheet.create({
   expenseName: {
     color: '#4E585E',
     fontSize: 14,
-    fontWeight: "500"
+    fontFamily:'Poppins-Medium',
   },
   expenseDate: {
     color: '#6A7175',
     fontSize: 12,
     marginLeft: 10,
+    fontFamily:'Poppins-Medium',
+
   },
   addButton: {
     position: 'absolute',

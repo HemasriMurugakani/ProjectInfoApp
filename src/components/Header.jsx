@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginLeft: 12,
     color: '#333',
+    fontFamily:'Poppins-SemiBold',
   },
 });
 

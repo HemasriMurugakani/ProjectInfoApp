@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   taskCount: {
     color: '#0C356A',
-    fontWeight: 'bold',
+    fontFamily:'Poppins-SemiBold',
     alignItems:'center'
   },
 });

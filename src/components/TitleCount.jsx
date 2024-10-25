@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 const TitleCount = ({ title, badgeCount, RightArrowIcon, navigation }) => {
   const formattedBadgeCount = badgeCount < 10 ? `0${badgeCount}` : badgeCount;
 
-  // Handle press to navigate
   const handlePress = () => {
-    navigation.navigate('FilesScreen'); // Adjust this to your desired screen
+    navigation.navigate('FilesScreen'); 
   };
 
   return (
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily:'Poppins-SemiBold',
     color: '#000',
   },
   badgeContainer: {
@@ -54,9 +53,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   badgeText: {
-    fontSize: 12,
+    fontSize: 10,
     color: '#0C356A',
-    fontWeight: 'bold',
+    fontFamily:'Poppins-SemiBold',
+    marginBottom:-4,
   },
   arrowContainer: {
     marginLeft: 'auto',

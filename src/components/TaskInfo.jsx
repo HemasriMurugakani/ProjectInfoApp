@@ -44,13 +44,17 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 16,
     color: '#000',
+    fontFamily:'Poppins-SemiBold',
   },
   description: {
     marginVertical: 10,
     color: '#333',
+    fontFamily:'Poppins-Medium',
+    fontSize:14,
   },
   moreText: {
     color: '#FF9000',
+    fontFamily:'Poppins-Medium',
   },
   detailsRow: {
     flexDirection: 'row',
@@ -58,6 +62,8 @@ const styles = StyleSheet.create({
   },
   detail: {
     color: '#555',
+    fontSize: 12,
+    fontFamily:'Poppins-Medium',
   },
 });
 

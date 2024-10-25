@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   progressText: {
     fontSize: 14,
     color: '#37474f', 
+    fontFamily:'Poppins-Medium',
   },
 });
 

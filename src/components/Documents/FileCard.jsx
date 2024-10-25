@@ -37,30 +37,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconBox: {
-    width: 50,   // Box size
-    height: 50,  // Box size
-    borderRadius: 12, // Rounded box corners
-    backgroundColor: '#F0F3F6', // Box background color
-    justifyContent: 'center', // Center the icon inside the box
+    width: 50,   
+    height: 50,  
+    borderRadius: 12, 
+    backgroundColor: '#F0F3F6', 
+    justifyContent: 'center', 
     alignItems: 'center',
   },
   icon: {
     width: 30,
-    height: 30, // Icon size inside the box
+    height: 30, 
     resizeMode: 'contain',
   },
   documentInfo: {
     marginLeft: 15,
+    fontFamily:'Poppins-Medium',
   },
   documentTitle: {
-    fontSize: 16,
-    fontWeight: '600', // Semi-bold for the title
+    fontSize: 14,
+    fontFamily:'Poppins-SemiBold',
     color: '#2e3a59',
   },
   documentDate: {
-    fontSize: 14,
-    color: '#8a94a6', // Subtle gray for the date text
+    fontSize: 12,
+    color: '#8a94a6', 
     marginTop: 2,
+    fontFamily:'Poppins-Medium',
   },
 });
 

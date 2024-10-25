@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontFamily:'Poppins-SemiBold',
     marginVertical: 10,
     marginHorizontal: 16,
     color: "#4E585E",

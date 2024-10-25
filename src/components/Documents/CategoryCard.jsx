@@ -38,15 +38,16 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   folderName: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily:'Poppins-SemiBold', 
     marginTop: 12,
     color: '#222B45',
   },
   folderDetails: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#8F9BB3', 
     marginTop: 4,
+    fontFamily:'Poppins-Medium',
   },
 });
 

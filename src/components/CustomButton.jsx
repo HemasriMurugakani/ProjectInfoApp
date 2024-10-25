@@ -29,15 +29,17 @@ const styles = StyleSheet.create({
     borderColor: '#002A6B',
     borderRadius: 10,
     paddingHorizontal: width * 0.04,  
-    height: height * 0.06,            
-    minWidth: width * 0.25,           
+    height: height * 0.05,            
+    minWidth: width * 0.09,           
   },
   buttonText: {
     color: '#002A6B',
-    fontSize: width * 0.04,          
-    marginRight: 8,                  
+    fontSize: width * 0.035,          
+    marginRight: 8,
+    marginTop:6,                  
     flexShrink: 1,                   
     textAlign: 'center',
+    fontFamily:'Poppins-Medium',
   },
 });
 
