@@ -1,34 +1,69 @@
 // App.js
-import * as React from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/screens/HomeScreen';  // First screen (task overview)
-import WireframeDetailsScreen from './src/screens/WireframeScreen';  // Second screen (details)
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'react-native'; // Import StatusBar
+import HomeScreen from './src/screens/HomeScreen';
 import FilesScreen from './src/screens/FilesScreen';
-import Wireframe from './src/screens/WireframeScreen';
+import WireframeScreen from './src/screens/WireframeScreen';
+import store from './redux/store';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen 
-          name="Home" 
-          component={HomeScreen}
-          options={{ headerShown: false }}  // Hides the header text
-        />
-        <Stack.Screen 
-          name="FilesScreen" 
-          component={FilesScreen} 
-          options={{ headerShown: false }}
-        />
-                <Stack.Screen 
-          name="WireframeScreen" 
-          component={Wireframe} 
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar barStyle="dark-content" backgroundColor="#ffffff" /> 
+        <Stack.Navigator 
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: { backgroundColor: '#ffffff' }, 
+            headerTintColor: '#000', 
+          }}
+        >
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              listeners: {
+                focus: () => StatusBar.setBarStyle('dark-content'),
+                blur: () => StatusBar.setBarStyle('light-content'),
+              },
+            }}
+          />
+          <Stack.Screen
+            name="FilesScreen"
+            component={FilesScreen}
+            options={{
+              headerShown: false,
+              title: 'Files',
+              headerStyle: { backgroundColor: '#f0f0f0' },
+              headerTintColor: '#000', 
+              listeners: {
+                focus: () => StatusBar.setBarStyle('dark-content'),
+                blur: () => StatusBar.setBarStyle('light-content'),
+              },
+            }}
+          />
+          <Stack.Screen
+            name="WireframeScreen"
+            component={WireframeScreen}
+            options={{
+              headerShown: false,
+              title: 'Wireframe',
+              headerStyle: { backgroundColor: '#6200ee' }, 
+              headerTintColor: '#fff',
+              listeners: {
+                focus: () => StatusBar.setBarStyle('light-content'),
+                blur: () => StatusBar.setBarStyle('dark-content'),
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
+import { useSelector, useDispatch } from 'react-redux';
 import ExpenseBottomSheet from './ExpenseModal';
+import { addExpense } from '../../redux/expenseSlice';
 
 const AddIcon = () => (
   <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -18,14 +20,15 @@ const AddIcon = () => (
 
 const LogExpense = () => {
   const [isBottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const [expenses, setExpenses] = useState([]);
+  const expenses = useSelector(state => state.expenses);
+  const dispatch = useDispatch();
 
   const toggleBottomSheet = () => {
     setBottomSheetVisible(!isBottomSheetVisible);
   };
 
   const handleExpenseSubmit = (expense) => {
-    setExpenses(prevExpenses => [...prevExpenses, expense]);
+    dispatch(addExpense(expense));
     toggleBottomSheet();
   };
 
@@ -48,6 +51,9 @@ const LogExpense = () => {
           <View style={styles.expenseRow}>
             <Text style={styles.expenseName}>{item.name}</Text>
             <Text style={styles.expenseDate}>• {item.date.toLocaleDateString()} • {item.amount} {item.currency}</Text>
+            {item.file && (
+              <Text style={styles.fileName}>File: {item.file.name}</Text>
+            )}
           </View>
         )}
         ItemSeparatorComponent={renderSeparator} 
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   expenseRow: {
-    flexDirection: 'row',
+    flexDirection: 'column',  
     marginVertical: 10,
   },
   expenseName: {
@@ -94,8 +100,14 @@ const styles = StyleSheet.create({
   expenseDate: {
     color: '#6A7175',
     fontSize: 12,
-    marginVertical:0,
-    marginHorizontal:5,
+    marginVertical: 0,
+    marginHorizontal: 5,
+  },
+  fileName: {
+    color: '#2B6EDC', 
+    fontSize: 12,
+    fontStyle: 'italic',
+    marginTop: 5,
   },
   addButton: {
     position: 'absolute',

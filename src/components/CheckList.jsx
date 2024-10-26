@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
+import TitleCount from './TitleCount';
 
 const Checkbox = ({ checked }) => (
   <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -52,7 +53,7 @@ const Checklist = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Check list 04</Text>
+      <TitleCount title="CheckList" badgeCount={items.length} />
       {items.map((item, index) => (
         <ChecklistItem
           key={index}

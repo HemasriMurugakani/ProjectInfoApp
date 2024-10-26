@@ -82,9 +82,7 @@ const styles = StyleSheet.create({
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: -33,
-    marginTop: -20,
-    marginBottom: -30,
+ 
   },
   headerCount: {
     alignItems: 'center',

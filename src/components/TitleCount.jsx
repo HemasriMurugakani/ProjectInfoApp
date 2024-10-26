@@ -26,7 +26,7 @@ const TitleCount = ({ title, badgeCount, RightArrowIcon, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding: 16,
+    
     borderRadius: 12,
     shadowColor: '#000',
     shadowOpacity: 0.1,
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     borderWidth: 1,
     borderColor: '#fff',
-    margin: 16,
+    marginBottom:10,
+    
     flexDirection: 'row',
     alignItems: 'center',
   },
