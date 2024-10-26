@@ -1,49 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Image, KeyboardAvoidingView, Platform } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { useSelector, useDispatch } from 'react-redux'; 
+import { addComment } from '../../redux/commentActions'; 
+import Svg, { Path } from 'react-native-svg'; 
 
-// List of random usernames
-const randomUsernames = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Hannah'];
+const sampleNames = [
+  'Alice',
+  'Bob',
+  'Charlie',
+  'David',
+  'Eve',
+  'Frank',
+  'Grace',
+  'Heidi',
+  'Ivan',
+  'Judy',
+];
 
-// List of avatars to be used
-const avatarUrls = [
-  'https://mighty.tools/mockmind-api/content/human/25.jpg',
-  'https://mighty.tools/mockmind-api/content/human/59.jpg',
-  'https://mighty.tools/mockmind-api/content/human/5.jpg'
+const sampleAvatars = [
+  'https://randomuser.me/api/portraits/men/1.jpg',
+  'https://randomuser.me/api/portraits/men/2.jpg',
+  'https://randomuser.me/api/portraits/men/3.jpg',
+  'https://randomuser.me/api/portraits/women/1.jpg',
+  'https://randomuser.me/api/portraits/women/2.jpg',
+  'https://randomuser.me/api/portraits/women/3.jpg',
+
 ];
 
 const CommentSection = () => {
-  const [comments, setComments] = useState([
-    { id: 1, name: 'Hamza', avatar: avatarUrls[0], text: 'harum quidem rerum facilis est...', time: '1 day ago' },
-    { id: 2, name: 'Mohammed', avatar: avatarUrls[1], text: 'Sure, Thanks', time: '12 hrs ago' }
-  ]);
+  const comments = useSelector((state) => state.comments?.comments || []);
+  const dispatch = useDispatch();
 
   const [newComment, setNewComment] = useState('');
 
-  // Function to generate a random username
-  const generateRandomUsername = () => {
-    const randomIndex = Math.floor(Math.random() * randomUsernames.length);
-    return randomUsernames[randomIndex];
-  };
+  useEffect(() => {
+    console.log('Comments changed:', comments);
+  }, [comments]);
 
-  // Function to generate a random avatar URL from the list
-  const generateRandomAvatar = () => {
-    const randomIndex = Math.floor(Math.random() * avatarUrls.length);
-    return avatarUrls[randomIndex];
-  };
-
-  const addComment = () => {
+  const addNewComment = () => {
     if (newComment.trim()) {
       const newCommentObject = {
         id: comments.length + 1,
-        name: generateRandomUsername(), // Get a random username
-        avatar: generateRandomAvatar(), // Get a random avatar URL
+        name: generateRandomUsername(),
+        avatar: generateRandomAvatar(),
         text: newComment,
-        time: 'Just now'
+        time: 'Just now',
       };
-      setComments([newCommentObject, ...comments]);
-      setNewComment(''); // Clear the input after adding
+      dispatch(addComment(newCommentObject));
+      setNewComment('');
     }
+  };
+
+  const generateRandomUsername = () => {
+    const randomIndex = Math.floor(Math.random() * sampleNames.length);
+    return sampleNames[randomIndex];
+  };
+
+  const generateRandomAvatar = () => {
+    const randomIndex = Math.floor(Math.random() * sampleAvatars.length);
+    return sampleAvatars[randomIndex];
   };
 
   const renderComment = ({ item }) => (
@@ -61,16 +76,11 @@ const CommentSection = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
       <Text style={styles.title}>Comments</Text>
-
-      {/* Dynamic height for the comment list */}
-      <View style={[
-        styles.commentListContainer, 
-        comments.length > 5 ? { maxHeight: 250 } : {} // Enforce scrolling if comments exceed 5
-      ]}>
+      <View style={[styles.commentListContainer, comments.length > 5 ? { maxHeight: 250 } : {}]}>
         <FlatList
           data={comments}
           renderItem={renderComment}
@@ -79,8 +89,6 @@ const CommentSection = () => {
           contentContainerStyle={{ paddingBottom: 20 }}
         />
       </View>
-
-   
       <View style={styles.addCommentContainer}>
         <TextInput
           style={styles.input}
@@ -89,8 +97,7 @@ const CommentSection = () => {
           value={newComment}
           onChangeText={setNewComment}
         />
-        <TouchableOpacity onPress={addComment} style={styles.sendButton}>
- 
+        <TouchableOpacity onPress={addNewComment} style={styles.sendButton}>
           <Svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" fill={"#4E585E"}>
             <Path d="M 5.4453125 4.0019531 A 1.50015 1.50015 0 0 0 4.109375 6.0644531 L 11.380859 24 L 4.109375 41.935547 A 1.50015 1.50015 0 0 0 6.1699219 43.841797 L 43.169922 25.341797 A 1.50015 1.50015 0 0 0 43.169922 22.658203 L 6.1699219 4.1582031 A 1.50015 1.50015 0 0 0 5.4453125 4.0019531 z M 8.3828125 8.6191406 L 39.146484 24 L 8.3828125 39.380859 L 14.011719 25.5 L 27.5 25.5 A 1.50015 1.50015 0 1 0 27.5 22.5 L 14.011719 22.5 L 8.3828125 8.6191406 z"></Path>
           </Svg>
@@ -100,6 +107,7 @@ const CommentSection = () => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
@@ -112,17 +120,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     margin: 16,
-    marginBottom:-2,
+    marginBottom: -2,
   },
   title: {
     fontSize: 16,
-    fontFamily:'Poppins-SemiBold',
+    fontFamily: 'Poppins-SemiBold',
     marginBottom: 10,
-    color: "black"
+    color: "black",
   },
-  commentListContainer: {
-    // Dynamically adjust the height based on the number of comments
-  },
+  commentListContainer: {},
   commentList: {
     flexGrow: 0,
   },
@@ -136,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginRight: 10,
     borderWidth: 2,
-    borderColor: "#E5E8EB"
+    borderColor: "#E5E8EB",
   },
   commentContent: {
     flex: 1,
@@ -146,48 +152,42 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   name: {
-    fontFamily:'Poppins-SemiBold',
+    fontFamily: 'Poppins-SemiBold',
     color: "#02111A",
-    fontSize:14,
+    fontSize: 14,
   },
   time: {
     color: 'gray',
     fontSize: 12,
-    fontFamily:'Poppins-Medium',
+    fontFamily: 'Poppins-Medium',
   },
   commentText: {
     marginTop: 5,
     color: "#4E585E",
-    marginBottom:10,
-    fontFamily:'Poppins-Medium',
+    marginBottom: 10,
+    fontFamily: 'Poppins-Medium',
     fontSize: 12,
   },
   addCommentContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop:-20,
     borderWidth: 1,
     borderColor: '#F0F3F6',
     borderRadius: 30,
     paddingLeft: 10,
-    backgroundColor:"#F0F3F6",
-    height:50
+    backgroundColor: "#F0F3F6",
+    height: 50,
   },
   input: {
     flex: 1,
     height: 55,
     color: "black",
-    fontSize:12,
-    fontFamily:'Poppins-Medium',
-
+    fontSize: 12,
+    fontFamily: 'Poppins-Medium',
   },
   sendButton: {
     paddingHorizontal: 10,
     justifyContent: 'center',
-  },
-  sendButtonText: {
-    color: '#007BFF',
-    fontFamily:'Poppins-Medium',
   },
 });
 

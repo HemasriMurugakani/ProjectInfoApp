@@ -54,7 +54,7 @@ export default function App() {
             options={{
               headerShown: false,
               title: 'Wireframe',
-              headerStyle: { backgroundColor: '#6200ee' }, 
+              headerStyle: { baackgroundColor: '#6200ee' }, 
               headerTintColor: '#fff',
               listeners: {
                 focus: () => StatusBar.setBarStyle('light-content'),

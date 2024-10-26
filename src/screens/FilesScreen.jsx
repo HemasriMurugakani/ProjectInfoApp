@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import CategoryCard from '../components/Documents/CategoryCard';
 import FileCard from '../components/Documents/FileCard';
 import Header from '../components/Header';
-import folders from '../../data/folders.json'
-import documents from '../../data/documents.json'
+import folders from '../../data/folders.json';
+import documents from '../../data/documents.json';
 
 const formatNo = (number) => number.toString().padStart(2, '0');
 
@@ -39,12 +39,14 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontFamily:'Poppins-SemiBold',
+    fontFamily: 'Poppins-SemiBold',
     marginVertical: 10,
     marginHorizontal: 16,
     color: "#4E585E",
   },
+  flatListContainer: {
+    paddingBottom: 20, 
+  },
 });
-
 
 export default FilesScreen;

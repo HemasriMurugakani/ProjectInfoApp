@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Svg, { Path, Rect } from 'react-native-svg';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import Svg, {Path, Rect} from 'react-native-svg';
 import TitleCount from './TitleCount';
+import CustomButton from './CustomButton';
 
-const Checkbox = ({ checked }) => (
+const Checkbox = ({checked}) => (
   <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <Rect
       x="1"
@@ -11,7 +12,7 @@ const Checkbox = ({ checked }) => (
       width="22"
       height="22"
       rx="3"
-      stroke={checked ? '#004080' : '#D9DBDD'} 
+      stroke={checked ? '#004080' : '#D9DBDD'}
       strokeWidth="2"
       fill={checked ? '#004080' : 'none'}
     />
@@ -27,7 +28,7 @@ const Checkbox = ({ checked }) => (
   </Svg>
 );
 
-const ChecklistItem = ({ text, checked, onPress, showSeparator }) => (
+const ChecklistItem = ({text, checked, onPress, showSeparator}) => (
   <View>
     <TouchableOpacity style={styles.itemRow} onPress={onPress}>
       <Checkbox checked={checked} />
@@ -39,13 +40,13 @@ const ChecklistItem = ({ text, checked, onPress, showSeparator }) => (
 
 const Checklist = () => {
   const [items, setItems] = useState([
-    { text: 'Creating IA for project management', checked: false },
-    { text: 'Flow chart ideation', checked: false },
-    { text: 'UI layout setup', checked: true },
-    { text: 'Basic UI components', checked: false },
+    {text: 'Creating IA for project management', checked: false},
+    {text: 'Flow chart ideation', checked: false},
+    {text: 'UI layout setup', checked: true},
+    {text: 'Basic UI components', checked: false},
   ]);
 
-  const toggleChecked = (index) => {
+  const toggleChecked = index => {
     const newItems = [...items];
     newItems[index].checked = !newItems[index].checked;
     setItems(newItems);
@@ -53,7 +54,15 @@ const Checklist = () => {
 
   return (
     <View style={styles.container}>
-      <TitleCount title="CheckList" badgeCount={items.length} />
+      <View style={styles.headerContent}>
+        <View style={styles.titleCountContainer}>
+          <TitleCount title="CheckList" badgeCount={items.length} />
+        </View>
+        {/* <View style={styles.customButtonContainer}>
+          <CustomButton label="Yet to start" />
+        </View> */}
+      </View>
+
       {items.map((item, index) => (
         <ChecklistItem
           key={index}
@@ -74,19 +83,34 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowRadius: 8,
     borderWidth: 1,
     borderColor: '#fff',
     margin: 16,
-    marginBottom:-2,
-    
+    marginBottom: -2,
+  },
+  headerContent: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    width: '100%', 
+  },
+  titleCountContainer: {
+    flexDirection:'row',
+    alignItems: 'center',
+    marginTop:-25,
+    marginLeft:-30,
+    marginBottom:-10,
+  },
+  customButtonContainer: {
+    padding: 5, 
   },
   title: {
     fontSize: 16,
     marginBottom: 10,
     color: 'black',
-    fontFamily:'Poppins-SemiBold'
+    fontFamily: 'Poppins-SemiBold',
   },
   itemRow: {
     flexDirection: 'row',
@@ -97,7 +121,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#000',
     fontSize: 13,
-    fontFamily:'Poppins-Medium',
+    fontFamily: 'Poppins-Medium',
   },
   separator: {
     height: 1,

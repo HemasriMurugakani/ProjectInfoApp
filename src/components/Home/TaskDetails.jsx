@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import the useNavigation hook
+import { useNavigation } from '@react-navigation/native'; 
 import TaskCount from '../TaskCount';
 import DownArrow from '../../assets/icons/DownArrow';
 import RightArrow from '../../assets/icons/RightArrow';
@@ -8,11 +8,11 @@ import TitleCount from '../TitleCount';
 import CustomButton from '../CustomButton';
 
 const TaskDetails = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation(); 
 
   const handleTaskPress = (task) => {
     if (task.title === 'Wireframes') {
-      navigation.navigate('WireframeScreen'); // Navigate to the WireframeScreen
+      navigation.navigate('WireframeScreen'); 
     }
   };
 
@@ -80,15 +80,18 @@ const styles = StyleSheet.create({
     marginBottom:-2,
   },
   headerRow: {
-    flexDirection: 'row',
+    flexDirection:'row',
     alignItems: 'center',
+    marginTop:-25,
+    marginLeft:-35,
  
   },
   headerCount: {
     alignItems: 'center',
     marginLeft: 160,
-    marginTop: -40,
+    marginTop: -70,
   },
+  
   taskRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
